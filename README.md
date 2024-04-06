@@ -1,4 +1,6 @@
-![ATC Discord Bot Logo](https://cdn.discordapp.com/attachments/1154140630914699355/1226298553488375840/ATC_BOT.png)
+<div align="center">
+<img height="200px" width="200px" src="https://cdn.discordapp.com/attachments/1154140630914699355/1226298553488375840/ATC_BOT.png?ex=66244286&is=6611cd86&hm=1b811b16cb71ae067ecc9020c4b99d6e804609c4f1d2b8f367caab84a19c9e1e&"></img>
+</div>
 
 # ATC Discord Bot for LiveATC Streams
 
