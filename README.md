@@ -1,3 +1,5 @@
+![ATC Discord Bot Logo](https://cdn.discordapp.com/attachments/1154140630914699355/1226298553488375840/ATC_BOT.png)
+
 # ATC Discord Bot for LiveATC Streams
 
 This Discord bot allows users to stream air traffic control (ATC) audio from LiveATC.net in a voice channel. It fetches the stream URLs from LiveATC.net using the specified ICAO code, allowing users to listen to real-time ATC communications.
