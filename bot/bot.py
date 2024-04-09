@@ -32,31 +32,46 @@ async def play_audio(ctx, stream_url, voice_channel_id):
     embed_helper = EmbedHelper()
     while True:
         try:
+            # Obtener el cliente de voz del bot en el servidor actual
+            voice_client = discord.utils.get(ctx.bot.voice_clients, guild=ctx.guild)
+
+            # Verificar si el bot ya está conectado a un canal de voz
+            if voice_client:
+                logging.info("Bot is now connected to a voice channel. Disconnecting...")
+                await voice_client.disconnect()
+                logging.info("Disconnected from existing voice channel.")
+
+            # Get the voice channel the bot will connect to
             voice_channel = ctx.guild.get_channel(voice_channel_id)
             if voice_channel is None:
-                await embed_helper.send_info_embed(ctx, "Information", "`Specified voice channel for frequency not found`")
+                await embed_helper.send_info_embed(ctx, "Information", "`The specified voice channel was not found for the frequency`")
                 return
 
-            logging.info("Connecting to voice channel...")
+            # Connect to voice channel
+            logging.info("Connecting to the voice channel..")
             voice_client = await voice_channel.connect()
-            logging.info("Successfully connected to voice channel.")
+            logging.info("Successful connection to the voice channel.")
 
+            # Reproducir el audio
             logging.info("Playing audio...")
             ffmpeg_options = {'options': '-vn'}
             voice_client.play(discord.FFmpegPCMAudio(stream_url, **ffmpeg_options))
 
+            # Wait until playback ends
             while voice_client.is_playing():
                 await asyncio.sleep(1)
 
-            voice_client.stop()  # Stop playback when audio finishes
-            await asyncio.sleep(2)  # Wait before attempting to restart playback
+            # Stop playback when audio ends
+            voice_client.stop()
+            logging.info("Audio stopped.")
 
-            logging.info("Audio finished.")
+            # Wait before trying to restart playback
+            await asyncio.sleep(2)
 
         except Exception as e:
             logging.error(f"Playback error: {e}", exc_info=True)
             await embed_helper.send_info_embed(ctx, "Information", "`An error occurred while playing audio`")
-            await asyncio.sleep(10)  # Wait before attempting again
+            await asyncio.sleep(10)  # Wait before trying again
 
 # Function to reconnect the bot
 async def reconnect_bots(ctx):
