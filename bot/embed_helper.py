@@ -1,14 +1,15 @@
+import os
 import discord
 import datetime
 
 class EmbedHelper:
     def __init__(self):
         self.color = 0x6699ff
-        self.author_name = "ATC Bot"
-        self.thumbnail_url = "https://cdn.discordapp.com/attachments/1154140630914699355/1226298553488375840/ATC_BOT.png"
-        self.author_icon_url = "https://cdn.discordapp.com/attachments/1154140630914699355/1226298553488375840/ATC_BOT.png"
-        self.footer_text = "ATC Bot"
-        self.footer_icon_url = "https://cdn.discordapp.com/attachments/1154140630914699355/1226298553488375840/ATC_BOT.png"
+        self.author_name = os.getenv("EMBED_AUTHOR_NAME", "ATC Bot")
+        self.thumbnail_url = os.getenv("EMBED_THUMBNAIL_URL", "")
+        self.author_icon_url = os.getenv("EMBED_AUTHOR_ICON_URL", "")
+        self.footer_text = os.getenv("EMBED_FOOTER_TEXT", "ATC Bot")
+        self.footer_icon_url = os.getenv("EMBED_FOOTER_ICON_URL", "")
 
     # Function to create a common information embed
     def create_info_embed(self, title, description, timestamp=None):
