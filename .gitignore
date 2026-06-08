@@ -1,5 +1,27 @@
-# ignore all files starting with .
+# Environment / secrets
 .env
 
-# track this file .gitignore (i.e. do NOT ignore it)
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Keep this file
 !.gitignore
